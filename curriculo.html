@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currículo — Jullia Patrocinio</title>
+<meta name="description" content="Currículo de Jullia Patrocinio — Engenharia de Computação, automação de processos e dados de operação industrial.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0D1117; --surf:#161B22; --border:#30363D;
+    --text:#E6EDF3; --muted:#8B949E; --accent:#2DD4BF; --ink:#0D1117;
+    --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .bar{position:sticky;top:0;z-index:5;background:rgba(13,17,23,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .bar .in{max-width:880px;margin:0 auto;padding:14px 32px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .bar .back{font-family:var(--mono);font-size:14px;color:var(--muted)}
+  .btn{font-family:var(--sans);font-size:14px;font-weight:600;padding:10px 18px;border-radius:8px;border:1px solid var(--accent);background:var(--accent);color:var(--ink);cursor:pointer}
+  .btn:hover{opacity:.9}
+
+  .cv{max-width:880px;margin:48px auto 96px;padding:0 32px}
+  h1{font-size:40px;font-weight:600;letter-spacing:-.01em;line-height:1.1}
+  .contact{margin-top:10px;color:var(--muted);font-size:15px}
+  .contact span + span::before{content:" | ";color:var(--border)}
+  .updated{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px}
+
+  section{margin-top:40px}
+  h2{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:16px}
+  p{font-size:15.5px}
+  .item + .item{margin-top:18px}
+  .item .head{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .item .head strong{font-weight:600}
+  .item .when{font-family:var(--mono);font-size:13px;color:var(--muted);white-space:nowrap}
+  .item .sub{color:var(--muted);font-size:14.5px}
+  ul{margin:8px 0 0 20px}
+  li{font-size:15px;margin-bottom:5px}
+  .skills li strong{font-weight:600}
+
+  /* ---------- versão impressa / PDF ---------- */
+  @page{size:A4;margin:16mm 15mm}
+  @media print{
+    :root{--bg:#fff;--text:#111;--muted:#444;--accent:#0B6E63;--border:#ccc}
+    body{background:#fff;font-size:10.5pt}
+    .bar{display:none}
+    .cv{margin:0;padding:0;max-width:none}
+    h1{font-size:24pt}
+    section{margin-top:16pt;break-inside:auto}
+    .item{break-inside:avoid}
+    p,li{font-size:10.5pt}
+    a{color:var(--text)}
+  }
+</style>
+</head>
+<body>
+
+<div class="bar"><div class="in">
+  <a class="back" href="index.html">← voltar ao portfólio</a>
+  <button class="btn" onclick="window.print()">Baixar PDF</button>
+</div></div>
+
+<main class="cv" id="cv"></main>
+
+<script>
+/* =====================================================================
+   CURRÍCULO VIVO — edite só este bloco.
+   Nova certificação? Adicione uma linha em "certificacoes".
+   Novo projeto ou experiência? Copie um item da lista e ajuste.
+   Depois é só fazer commit no GitHub: o site e o PDF já saem atualizados.
+   ===================================================================== */
+const CV = {
+  atualizadoEm: "novembro de 2026",
+  nome: "Jullia Patrocinio",
+  contato: [
+    "Rio de Janeiro, RJ",
+    '<a href="mailto:julliapatrociniorossi@gmail.com">julliapatrociniorossi@gmail.com</a>',
+    '<a href="https://www.linkedin.com/in/jullia-patrocinio" target="_blank" rel="noopener">linkedin.com/in/jullia-patrocinio</a>',
+    '<a href="https://jullross.github.io/portf-lio/">jullross.github.io/portf-lio</a>',
+    "PCD"
+  ],
+  resumo: "Estudante de Engenharia de Computação (conclusão prevista em dezembro de 2028), estagiária na NTS (Nova Transportadora do Sudeste), com atuação em dados de operação industrial (SCADA, PI System, SAP PM), automação em Python e Power Automate integrada ao SAP e simulação de sistemas elétricos de potência. Experiência na interface entre TI e operação de dutos, com foco em monitoramento de ativos, quantificação de emissões e melhoria de processos. Busca estágio em engenharia.",
+  formacao: [
+    { titulo: "Bacharelado em Engenharia de Computação", local: "Centro Universitário UniCarioca", quando: "Conclusão prevista: dez/2028" }
+  ],
+  experiencia: [
+    {
+      titulo: "Nova Transportadora do Sudeste (NTS)",
+      cargo: "Estagiária de TI / Automação e Engenharia de Processos · Rio de Janeiro, RJ",
+      quando: "out/2024 – atual",
+      itens: [
+        "Dados de operação industrial: dashboards em Power BI e relatórios em Excel integrados a SAP, SCADA e PI System via SQL e APIs REST, para monitoramento de ativos e acompanhamento de volumes e emissões.",
+        "Quantificação de emissões de metano via SAP PM: coautora do projeto apresentado no Rio Pipeline 2027, com reporte ao OGMP.",
+        "Monitor de SEEs pendentes: job do SAP S/4HANA (tabela ZFIR0005) exporta os dados para o SharePoint; fluxo em Power Automate aplica a regra de mais de 60 dias em aberto e notifica os responsáveis diariamente. Economia estimada de R$ 250 mil + juros.",
+        "Automação industrial e de processos: pipelines de dados e automações em Python, C++ e Power Automate, conectando SAP, SharePoint e ferramentas corporativas por APIs REST e eliminando tarefas manuais.",
+        "Interface TI/OT: mapeamento, padronização e documentação de fluxos operacionais entre TI e operação, com foco em conformidade, auditabilidade e melhoria contínua."
+      ]
+    },
+    {
+      titulo: "CAMIM",
+      cargo: "Analista de Suporte / Helpdesk (Nível 2) · Rio de Janeiro, RJ",
+      quando: "dez/2023 – out/2024",
+      itens: ["Suporte Nível 2 a incidentes em infraestrutura de TI e sistemas corporativos; levantamento de requisitos e mapeamento de fluxos (BPMN) com stakeholders."]
+    },
+    {
+      titulo: "Via (Ponto Frio)",
+      cargo: "Jovem Aprendiz Administrativo · Rio de Janeiro, RJ",
+      quando: "jun/2022 – fev/2023",
+      itens: ["Organização e controle de documentação técnica e administrativa."]
+    }
+  ],
+  projetos: [
+    { titulo: "UVAFLOW — Simulação computacional de redes elétricas (Python e Scilab)",
+      texto: "Software open-source de fluxo de carga pelo método de Newton-Raphson em coordenadas polares, com fluxo DC como estimativa inicial. Lê cartões no padrão CEPEL (DBAR/DLIN) e IEEE CDF; validado nos sistemas IEEE 14 e 30 barras contra o ANAREDE, com desvio inferior a 0,01%." },
+    { titulo: "Monitoramento de ocorrências em equipamentos de M&Q (SAP PM + Power Automate)",
+      texto: "Leitura das transações IW29 e IW39 para calcular WIP, SLA médio, top ofensores e aging de desvios críticos; fluxo RPA alerta a coordenação duas vezes por dia." },
+    { titulo: "Painel de Telemetria e Monitoramento Operacional (Power BI + SQL)",
+      texto: "Solução de BI conectada a bancos SQL para telemetria, monitoramento de infraestrutura de redes e apresentação executiva de KPIs técnicos." },
+    { titulo: "Sálvia — Plataforma web de triagem com Machine Learning (TCC)",
+      texto: "Aplicação full-stack (FastAPI, React, Docker) com modelo multirrótulo em scikit-learn baseado no DSM-5, explicação das recomendações, auditoria de viés e laudo em PDF assinado pelo clínico." }
+  ],
+  extracurriculares: [
+    { titulo: "UERJBotz (Equipe de Robótica)", cargo: "Trainee", quando: "2026 – atual", texto: "Desenvolvimento prático de sistemas computacionais e eletrônica aplicada." },
+    { titulo: "Young Pipeline Professionals Brazil (YPP Brasil)", cargo: "Membro do comitê", quando: "2025 – atual", texto: "Discussões técnicas, de inovação e de regulação da indústria de dutos e energia." }
+  ],
+  competencias: [
+    ["Engenharia e dados industriais", "SCADA, PI System, SAP PM, simulação de redes elétricas (fluxo de carga, ANAREDE), telemetria, controle e monitoramento de ativos."],
+    ["Programação", "Python, C/C++, Scilab, SQL, TypeScript; FastAPI, React, scikit-learn; Git, Docker, Postman; Arduino."],
+    ["Automação e integração", "Power Automate, RPA, Copilot Studio, SAP S/4HANA, APIs REST, SharePoint, ServiceNow."],
+    ["Análise de dados", "Power BI (DAX), Excel avançado."],
+    ["Processos", "BPMN, Scrum, levantamento de requisitos, documentação técnica."]
+  ],
+  certificacoes: [
+    "PI System Basics — AVEVA (nov/2026)",
+    "Scrum Foundation Professional Certificate (SFPC) — CertiProf",
+    "EF SET English Certificate: 77/100 (C2 Proficient)"
+  ],
+  idiomas: "Inglês: avançado (C2) | Espanhol: básico | Português: nativo"
+};
+/* ======================= fim da área de edição ======================= */
+
+function render(cv){
+  const sec = (t, body) => `<section><h2>${t}</h2>${body}</section>`;
+  const item = (titulo, sub, quando, corpo='') => `
+    <div class="item">
+      <div class="head"><strong>${titulo}</strong>${quando ? `<span class="when">${quando}</span>` : ''}</div>
+      ${sub ? `<div class="sub">${sub}</div>` : ''}${corpo}
+    </div>`;
+  const lista = arr => `<ul>${arr.map(i => `<li>${i}</li>`).join('')}</ul>`;
+  return `
+    <h1>${cv.nome}</h1>
+    <div class="contact">${cv.contato.map(c => `<span>${c}</span>`).join('')}</div>
+    <div class="updated">Atualizado em ${cv.atualizadoEm}</div>
+    ${sec('Resumo profissional', `<p>${cv.resumo}</p>`)}
+    ${sec('Formação acadêmica', cv.formacao.map(f => item(f.titulo, f.local, f.quando)).join(''))}
+    ${sec('Experiência profissional', cv.experiencia.map(e => item(e.titulo, e.cargo, e.quando, lista(e.itens))).join(''))}
+    ${sec('Projetos de engenharia', cv.projetos.map(p => item(p.titulo, '', '', `<p>${p.texto}</p>`)).join(''))}
+    ${sec('Atividades extracurriculares', cv.extracurriculares.map(x => item(x.titulo, x.cargo, x.quando, `<p>${x.texto}</p>`)).join(''))}
+    ${sec('Competências técnicas', `<ul class="skills">${cv.competencias.map(([k,v]) => `<li><strong>${k}:</strong> ${v}</li>`).join('')}</ul>`)}
+    ${sec('Certificações e idiomas', lista([...cv.certificacoes, cv.idiomas]))}
+  `;
+}
+document.getElementById('cv').innerHTML = render(CV);
+</script>
+</body>
+</html>

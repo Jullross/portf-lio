@@ -1,416 +1,419 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jullia Patrocínio · Tecnologia, Dados & Automação</title>
+<title>Jullia Patrocinio — Engenharia de Computação | Automação de Processos</title>
+<meta name="description" content="Portfólio de Jullia Patrocinio: Engenharia de Computação, automação de processos industriais, integração SAP e simulação de sistemas de potência.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --wine-950:#22060f;
-    --wine-900:#2c0a15;
-    --wine-800:#48132a;
-    --wine-700:#671f37;
-    --rose-300:#f0c3d0;
-    --rose-200:#f6d9e2;
-    --paper:#fdf7f8;
-    --blush:#f6eef0;
-    --card:#fffafb;
-    --line:#e8d6db;
-    --ink:#2a1620;
-    --body:#6b4a56;
-    --mono-dim:#a9788a;
+    --bg:#0D1117; --surf:#161B22; --surf2:#1C2330; --border:#30363D;
+    --text:#E6EDF3; --muted:#8B949E; --accent:#2DD4BF; --ink:#0D1117;
+    --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --w:1280px;
   }
-  *{box-sizing:border-box;}
-  p{margin:0;}
-  html{scroll-behavior:smooth;}
-  body{margin:0;font-family:"Inter",sans-serif;color:var(--ink);background:var(--blush);overflow-x:hidden;}
-  .wrap{width:min(1160px, calc(100% - 48px));margin:0 auto;}
-  .display{font-family:"Space Grotesk",sans-serif;}
-  .mono{font-family:"JetBrains Mono",monospace;}
-  a{color:inherit;}
-  .lang-en{display:none;}
-  body.is-en .lang-pt{display:none;}
-  body.is-en .lang-en{display:inline;}
-  body.is-en .lang-en.block{display:block;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--w);margin:0 auto;padding:0 32px}
+  .mono{font-family:var(--mono)}
+  .eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+  .muted{color:var(--muted)}
 
-  /* header */
-  header{position:sticky;top:0;z-index:50;background:var(--wine-950);border-bottom:1px solid rgba(255,255,255,.08);}
-  .header-inner{display:flex;align-items:center;justify-content:space-between;min-height:66px;gap:16px;}
-  .brand{font-family:"JetBrains Mono",monospace;font-size:.86rem;letter-spacing:.06em;color:#fff7f8;text-decoration:none;font-weight:500;}
-  nav{display:flex;align-items:center;gap:22px;overflow-x:auto;}
-  nav a{font-size:.86rem;color:#e3c3cd;text-decoration:none;white-space:nowrap;transition:color .2s ease;}
-  nav a:hover{color:#fff;}
-  #lang-toggle{border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);color:#fff5f6;border-radius:999px;padding:.5rem .9rem;font-size:.78rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .2s ease,border-color .2s ease;}
-  #lang-toggle:hover{background:rgba(255,255,255,.15);border-color:var(--rose-300);}
+  /* nav */
+  header{position:sticky;top:0;z-index:10;background:rgba(13,17,23,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-family:var(--mono);font-weight:600;color:var(--accent)}
+  .links{display:flex;gap:28px;font-size:14px}
+  .links a{color:var(--muted);transition:color .15s}
+  .links a:hover{color:var(--text)}
 
   /* hero */
-  .hero{position:relative;background:var(--wine-950);padding:96px 0 88px;overflow:hidden;}
-  .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,214,225,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,214,225,.06) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 82%);}
-  .hero-inner{position:relative;z-index:1;}
-  .eyebrow{display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--rose-300);}
-  .eyebrow::before{content:"";width:26px;height:1px;background:currentColor;display:block;}
-  .hero h1{max-width:760px;margin:22px 0 0;font-size:clamp(2.1rem,4.6vw,3.6rem);line-height:1.06;letter-spacing:-.02em;color:#fff8f9;font-weight:600;}
-  .hero p.lede{max-width:600px;margin:24px 0 0;font-size:1.15rem;line-height:1.6;color:#f0d9e0;}
-  .hero p.sub{margin:10px 0 0;font-family:"JetBrains Mono",monospace;font-size:.82rem;letter-spacing:.03em;color:var(--mono-dim);}
-  .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px;}
-  .tag{border-radius:999px;padding:8px 16px;font-size:.84rem;font-weight:500;background:var(--wine-700);color:#ffe8ed;}
-  .cta{margin-top:34px;display:inline-flex;align-items:center;gap:10px;background:var(--rose-300);color:var(--wine-950);text-decoration:none;font-weight:700;font-size:.92rem;padding:13px 22px;border-radius:2px;transition:transform .2s ease,background .2s ease;}
-  .cta:hover{transform:translateY(-2px);background:#fff;}
+  .hero{padding:112px 0 96px}
+  .hero h1{font-size:clamp(34px,5vw,56px);line-height:1.1;letter-spacing:-.02em;font-weight:600;max-width:1040px;margin:20px 0 24px}
+  .hero p{font-size:clamp(17px,1.6vw,20px);color:var(--muted);max-width:880px;line-height:1.55}
+  .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:8px;font-size:15px;border:1px solid var(--border);transition:border-color .15s,transform .15s}
+  .btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .btn.primary{background:var(--accent);color:var(--ink);border-color:var(--accent);font-weight:600}
+  .btn.ghost{font-family:var(--mono)}
 
-  /* signature: pipeline */
-  .pipeline{margin-top:64px;position:relative;}
-  .pipeline svg{width:100%;height:auto;display:block;}
-  .pipeline-labels{display:grid;grid-template-columns:repeat(4,1fr);margin-top:14px;gap:8px;}
-  .pipeline-labels div{font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:.04em;color:var(--rose-300);text-align:center;}
-  .pipeline-labels span.cap{display:block;color:var(--mono-dim);font-size:.68rem;margin-top:2px;}
-  .flow-dash{stroke-dasharray:6 10;animation:flow 2.6s linear infinite;}
-  @keyframes flow{to{stroke-dashoffset:-64;}}
-  @media (prefers-reduced-motion:reduce){.flow-dash{animation:none;}}
+  .strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surf)}
+  .strip .wrap{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center;padding-top:18px;padding-bottom:18px;font-family:var(--mono);font-size:14px;color:var(--muted)}
+  .strip span:nth-child(odd){color:var(--text)}
 
-  section{padding:96px 0;scroll-margin-top:82px;}
-  #inicio{scroll-margin-top:0;}
-  .section-head{display:grid;grid-template-columns:.72fr 1.28fr;gap:48px;}
-  .section-title{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.04;letter-spacing:-.02em;color:var(--ink);max-width:640px;margin:16px 0 0;}
+  /* sections */
+  section{padding:96px 0 0}
+  .sec-head{margin-bottom:40px}
+  .sec-head h2{font-size:clamp(26px,3vw,32px);font-weight:600;margin:10px 0}
+  .sec-head p{color:var(--muted);max-width:900px}
 
-  /* about */
-  #sobre{background:var(--paper);}
-  .about-copy{max-width:640px;margin-top:28px;line-height:1.85;color:var(--body);font-size:1.08rem;}
-  .points{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px;}
-  .point{border-top:2px solid var(--wine-700);padding-top:16px;}
-  .point h4{margin:0;font-size:1rem;font-weight:700;color:var(--ink);}
-  .point p{margin:8px 0 0;font-size:.92rem;line-height:1.6;color:var(--body);}
+  /* case studies */
+  .case{display:grid;grid-template-columns:360px 1fr;gap:48px;background:var(--surf);border:1px solid var(--border);border-radius:16px;padding:40px;margin-bottom:24px}
+  .case h3{font-size:26px;line-height:1.2;font-weight:600;margin:14px 0 16px}
+  .case .summary{font-size:16px;line-height:1.65}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{font-family:var(--mono);font-size:12.5px;padding:5px 12px;border-radius:999px;border:1px solid var(--border);background:rgba(230,237,243,.04)}
+  .label{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;margin-bottom:12px}
+  .block + .block{margin-top:28px}
+  .pipe{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+  .step{font-family:var(--mono);font-size:13px;line-height:1.4;background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;max-width:170px}
+  .step b{display:block;color:var(--accent);font-weight:600;font-size:11px;margin-bottom:4px}
+  .arrow{font-family:var(--mono);color:var(--accent)}
+  .decisions{list-style:none}
+  .decisions li{position:relative;padding-left:20px;margin-bottom:8px;font-size:15px}
+  .decisions li::before{content:"—";position:absolute;left:0;color:var(--accent)}
+  .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .metric{border:1px solid var(--border);border-radius:10px;padding:14px 16px;background:var(--bg)}
+  .metric strong{display:block;font-family:var(--mono);font-size:20px;font-weight:600;color:var(--text)}
+  .metric span{font-size:13px;color:var(--muted)}
 
-  /* projects */
-  #projetos{background:#f3e7ea;}
-  .projects-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;}
-  .projects-head p{max-width:320px;color:var(--body);line-height:1.65;font-size:.95rem;}
-  .grid-projects{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:22px;}
-  .project-card{background:var(--card);border:1px solid var(--line);text-decoration:none;display:flex;flex-direction:column;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;}
-  .project-card:hover{transform:translateY(-6px);border-color:#bd8493;box-shadow:0 22px 44px rgba(80,26,45,.14);}
-  .project-art{height:118px;position:relative;display:flex;align-items:flex-end;padding:16px 20px;}
-  .project-art span{font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:.08em;color:#ffe4ec;}
-  .project-body{padding:26px;flex:1;display:flex;flex-direction:column;}
-  .project-cat{margin:0;font-family:"JetBrains Mono",monospace;font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#9a4a63;white-space:nowrap;}
-  .project-body h3{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:1.4rem;margin:12px 0 0;color:var(--ink);letter-spacing:-.01em;}
-  .project-body p{margin:12px 0 0;color:var(--body);line-height:1.6;font-size:.95rem;flex:1;}
-  .project-wide{grid-column:1 / -1;}
-  .project-link{margin-top:18px;font-weight:700;font-size:.86rem;color:#9a4a63;}
+  /* more projects */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:24px}
+  .card{background:var(--surf);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column}
+  .card .eyebrow{font-size:11px}
+  .card h3{font-size:20px;line-height:1.25;font-weight:600;margin:12px 0}
+  .card p{font-size:14.5px;color:var(--muted);line-height:1.6}
+  .card .chips{margin-top:auto;padding-top:18px}
+  .card .links-row{display:flex;gap:16px;margin-top:16px;font-family:var(--mono);font-size:13px}
+  .card .links-row a{color:var(--accent)}
+  .card .links-row a:hover{text-decoration:underline}
 
   /* skills */
-  #habilidades{background:var(--paper);}
-  .skills-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;}
-  .skills-desc{max-width:380px;margin-top:30px;color:var(--body);line-height:1.7;}
-  .skills-cols{display:grid;grid-template-columns:1fr 1fr;column-gap:48px;}
-  .skill-item{border-top:1px solid var(--line);padding:18px 0;}
-  .skill-item h4{margin:0;font-weight:700;font-size:.98rem;color:var(--ink);}
-  .skill-item p{margin:8px 0 0;font-size:.9rem;line-height:1.6;color:var(--body);}
+  .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .skill{background:var(--surf);border:1px solid var(--border);border-radius:16px;padding:28px}
+  .skill h3{font-size:21px;font-weight:600}
+  .skill > p{font-size:14px;color:var(--muted);margin:4px 0 8px}
+  .skill .group{margin-top:20px}
+  .skill .group .eyebrow{font-size:11px}
+  .skill .chips{margin-top:10px}
 
-  /* resume */
-  #curriculo{background:var(--blush);padding:76px 0;}
-  .resume-card{background:var(--card);border:1px solid var(--line);padding:32px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;}
-  .resume-card h2{margin:10px 0 0;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:1.6rem;}
-  .resume-card p{margin:8px 0 0;color:var(--body);max-width:420px;line-height:1.6;font-size:.95rem;}
-  .resume-cta{background:var(--wine-700);color:#fff7f8;text-decoration:none;font-weight:700;font-size:.9rem;padding:13px 22px;display:inline-flex;align-items:center;gap:10px;white-space:nowrap;}
+  /* journey */
+  .timeline{border:1px solid var(--border);border-radius:12px}
+  .row{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:20px 24px;border-bottom:1px solid var(--border)}
+  .row:last-child{border-bottom:0}
+  .row .when{font-family:var(--mono);font-size:14px;color:var(--accent)}
+  .row strong{font-weight:600}
+  .row p{font-size:14px;color:var(--muted)}
 
   /* contact */
-  #contato{background:var(--wine-950);color:#fff;}
-  .contact-title{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:clamp(1.5rem,3.1vw,2.4rem);max-width:none;white-space:nowrap;margin:16px 0 0;color:#fff8f9;}
-  .contact-top{margin-top:36px;display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;}
-  .contact-heading{padding-top:2px;}
-  .contact-panel{background:#481426;width:100%;max-width:520px;padding:32px;box-shadow:0 20px 50px rgba(0,0,0,.18);}
-  .contact-panel h5{margin:0;font-family:"JetBrains Mono",monospace;font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#f5c2cf;}
-  .contact-links{margin-top:26px;display:flex;flex-direction:column;gap:16px;}
-  .contact-links a{display:inline-flex;align-items:center;gap:12px;color:#fff7f8;text-decoration:none;padding-bottom:7px;border-bottom:1px solid rgba(244,204,214,.35);font-size:.98rem;font-weight:500;transition:color .2s ease,border-color .2s ease,transform .2s ease;width:fit-content;}
-  .contact-links a:hover{color:#ffd9e1;border-color:#ffd9e1;transform:translateX(4px);}
-  .contact-panel .loc{margin-top:26px;font-size:.88rem;line-height:1.6;color:#e4bbc5;}
-  .icon{width:18px;height:18px;flex-shrink:0;}
+  .contact{display:flex;flex-wrap:wrap;gap:12px}
+  footer{padding:64px 0 48px;color:var(--muted);font-family:var(--mono);font-size:12px}
 
-  footer{background:#210812;color:#d7aab5;border-top:1px solid rgba(255,255,255,.06);}
-  .footer-inner{padding:26px 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:.85rem;}
-
-  @media (max-width:860px){
-    .section-head,.skills-grid{grid-template-columns:1fr;}
-    .contact-top{flex-direction:column;align-items:stretch;}
-    .contact-title{white-space:normal;}
-    .contact-panel{max-width:100%;}
-    .points{grid-template-columns:1fr;}
-    .grid-projects{grid-template-columns:1fr;}
-    .skills-cols{grid-template-columns:1fr;}
-    .pipeline-labels{grid-template-columns:repeat(2,1fr);row-gap:14px;}
+  @media (max-width:960px){
+    .case{grid-template-columns:1fr;gap:32px;padding:28px}
+    .skills{grid-template-columns:1fr}
+    .links{display:none}
+    .row{grid-template-columns:1fr;gap:6px}
   }
-  @media (max-width:640px){
-    nav{gap:14px;}
-    nav a{font-size:.78rem;}
-    .hero{padding:78px 0 64px;}
-  }
-  :focus-visible{outline:2px solid #e9a8b8;outline-offset:3px;}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="wrap header-inner">
-    <a class="brand" href="javascript:void(0)" data-target="#inicio">JULLIA PATROCÍNIO</a>
-    <div style="display:flex;align-items:center;gap:20px;">
-      <nav>
-        <a href="javascript:void(0)" data-target="#sobre"><span class="lang-pt">Sobre</span><span class="lang-en">About</span></a>
-        <a href="javascript:void(0)" data-target="#projetos"><span class="lang-pt">Projetos</span><span class="lang-en">Projects</span></a>
-        <a href="javascript:void(0)" data-target="#habilidades"><span class="lang-pt">Habilidades</span><span class="lang-en">Skills</span></a>
-        <a href="javascript:void(0)" data-target="#curriculo"><span class="lang-pt">Currículo</span><span class="lang-en">Resume</span></a>
-        <a href="javascript:void(0)" data-target="#contato"><span class="lang-pt">Contato</span><span class="lang-en">Contact</span></a>
-      </nav>
-      <button id="lang-toggle" type="button" aria-pressed="false">
-        <span class="lang-pt">English</span><span class="lang-en">Português</span>
-      </button>
+  <nav class="wrap" aria-label="Principal">
+    <a href="#top" class="logo">jullia.eng_</a>
+    <div class="links">
+      <a href="#estudos">Estudos de caso</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#trajetoria">Trajetória</a>
+      <a href="#contato">Contato</a>
     </div>
-  </div>
+  </nav>
 </header>
 
-<main>
-  <section id="inicio" class="hero">
-    <div class="wrap hero-inner">
-      <p class="eyebrow"><span class="lang-pt">Portfólio profissional</span><span class="lang-en">Professional portfolio</span></p>
-      <h1><span class="lang-pt">Tecnologia que transforma informação em direção.</span><span class="lang-en">Technology that turns information into direction.</span></h1>
-      <p class="lede"><span class="lang-pt">Dados, automação e visão analítica para criar soluções consistentes, escaláveis e conectadas a resultados.</span><span class="lang-en">Data, automation and analytical thinking to build consistent, scalable solutions connected to results.</span></p>
-      <p class="sub"><span class="lang-pt">Tecnologia · Dados · Business Intelligence · Automação</span><span class="lang-en">Technology · Data · Business Intelligence · Automation</span></p>
-      <div class="tags">
-        <span class="tag"><span class="lang-pt">Estratégia</span><span class="lang-en">Strategy</span></span>
-        <span class="tag"><span class="lang-pt">Inteligência de Dados</span><span class="lang-en">Data Intelligence</span></span>
-        <span class="tag"><span class="lang-pt">Eficiência</span><span class="lang-en">Efficiency</span></span>
-      </div>
-      <a class="cta" href="javascript:void(0)" data-target="#contato">
-        <span class="lang-pt">Entrar em contato</span><span class="lang-en">Get in touch</span> ↗
-      </a>
+<main id="top">
+  <div class="wrap hero">
+    <div class="eyebrow">Jullia Patrocinio</div>
+    <h1>Engenharia de Computação | Automação de Processos e Integração de Sistemas</h1>
+    <p>Simulação de sistemas elétricos de potência em Python e Scilab, automação de processos de manutenção e medição sobre SAP S/4HANA e SAP PM, e integração de sistemas com Power Automate e APIs REST. Cada projeto aqui é documentado como estudo de caso: contexto, arquitetura, decisões e resultado.</p>
+    <div class="ctas">
+      <a class="btn primary" href="#estudos">Ver estudos de caso →</a>
+      <a class="btn ghost" href="https://github.com/Jullross" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn ghost" href="curriculo.html">Currículo</a>
+    </div>
+  </div>
 
-      <div class="pipeline" aria-hidden="true">
-        <svg viewBox="0 0 900 60" preserveAspectRatio="none">
-          <line x1="20" y1="30" x2="880" y2="30" stroke="rgba(255,214,225,.22)" stroke-width="1"/>
-          <line class="flow-dash" x1="20" y1="30" x2="880" y2="30" stroke="#f0c3d0" stroke-width="1.5"/>
-          <circle cx="110" cy="30" r="6" fill="#22060f" stroke="#f0c3d0" stroke-width="2"/>
-          <circle cx="340" cy="30" r="6" fill="#22060f" stroke="#f0c3d0" stroke-width="2"/>
-          <circle cx="570" cy="30" r="6" fill="#22060f" stroke="#f0c3d0" stroke-width="2"/>
-          <circle cx="800" cy="30" r="7" fill="#f0c3d0"/>
-        </svg>
-        <div class="pipeline-labels">
-          <div><span class="lang-pt">Coleta</span><span class="lang-en">Collection</span><span class="cap lang-pt">dados brutos</span><span class="cap lang-en">raw data</span></div>
-          <div><span class="lang-pt">Modelagem</span><span class="lang-en">Modeling</span><span class="cap lang-pt">estrutura</span><span class="cap lang-en">structure</span></div>
-          <div><span class="lang-pt">Automação</span><span class="lang-en">Automation</span><span class="cap lang-pt">fluxos</span><span class="cap lang-en">pipelines</span></div>
-          <div><span class="lang-pt">Direção</span><span class="lang-en">Direction</span><span class="cap lang-pt">decisões</span><span class="cap lang-en">decisions</span></div>
-        </div>
+  <div class="strip" aria-label="Stack principal">
+    <div class="wrap">
+      <span>Python</span><span>▸</span><span>C/C++</span><span>▸</span><span>Scilab</span><span>▸</span><span>SAP S/4HANA</span><span>▸</span><span>SAP PM</span><span>▸</span><span>Power Automate</span><span>▸</span><span>APIs REST</span><span>▸</span><span>SQL</span>
+    </div>
+  </div>
+
+  <!-- ===================== ESTUDOS DE CASO ===================== -->
+  <section id="estudos">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">01 · Estudos de caso</div>
+        <h2>Engenharia e arquitetura da solução</h2>
+        <p>Projetos de simulação numérica, dados de operação industrial e automação integrada ao SAP.</p>
       </div>
+
+      <!-- UVAFLOW -->
+      <article class="case">
+        <div>
+          <div class="eyebrow">Sistemas de potência · Iniciação científica (UVA)</div>
+          <h3>UVAFLOW — ferramenta open-source de fluxo de carga</h3>
+          <p class="summary">Resolve as equações de balanço de potência de sistemas elétricos pelo método de Newton-Raphson em coordenadas polares, com fluxo de carga linearizado (DC) como estimativa inicial ou comparação rápida. Lê cartões no padrão CEPEL (DBAR/DLIN, .txt/.pwf) e planilhas no formato IEEE CDF (.csv).</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">Scilab</span><span class="chip">Newton-Raphson</span><span class="chip">Fluxo DC</span><span class="chip">CEPEL / IEEE CDF</span><span class="chip">ANAREDE</span></div>
+        </div>
+        <div>
+          <div class="block">
+            <div class="label">Arquitetura da solução</div>
+            <div class="pipe">
+              <div class="step"><b>01</b>Entrada: .pwf (DBAR/DLIN) ou IEEE CDF</div><span class="arrow">→</span>
+              <div class="step"><b>02</b>Montagem da matriz Y<sub>bus</sub></div><span class="arrow">→</span>
+              <div class="step"><b>03</b>Estimativa inicial: fluxo DC</div><span class="arrow">→</span>
+              <div class="step"><b>04</b>Newton-Raphson polar (Jacobiana)</div><span class="arrow">→</span>
+              <div class="step"><b>05</b>Saída: tensões, ângulos, fluxos e perdas</div>
+            </div>
+          </div>
+          <div class="block">
+            <div class="label">Decisões técnicas</div>
+            <ul class="decisions">
+              <li>Scilab como laboratório matemático na primeira fase: validação da Y<sub>bus</sub> e da Jacobiana e depuração em redes de 3 a 5 barras (Stevenson / Monticelli).</li>
+              <li>Formatos do setor (CEPEL e IEEE CDF) para comparar as saídas diretamente com o ANAREDE.</li>
+              <li>Validação nos sistemas IEEE 14 barras e IEEE 30 barras.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="label">Resultado</div>
+            <div class="metrics">
+              <div class="metric"><strong>10⁻⁴ p.u.</strong><span>tolerância em ΔP e ΔQ</span></div>
+              <div class="metric"><strong>4–5</strong><span>iterações no IEEE 14 barras</span></div>
+              <div class="metric"><strong>&lt; 0,01%</strong><span>desvio vs. ANAREDE (tensão e ângulo)</span></div>
+              <div class="metric"><strong>30–50 ms</strong><span>por execução</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EMISSÕES / METANO -->
+      <article class="case">
+        <div>
+          <div class="eyebrow">Dados de operação industrial · NTS</div>
+          <h3>Quantificação de metano e controle de volumes e emissões</h3>
+          <p class="summary">Solução de dados ponta a ponta para controle e auditoria de volumes operacionais e de emissões de gases de efeito estufa (tCO₂e) na operação de transporte de gás, com quantificação de metano a partir de dados do SAP PM. Substituiu controles manuais por uma base certificada, validada pelos comitês de Ética e SSMA e usada no reporte ao OGMP 2.0.</p>
+          <div class="chips"><span class="chip">SAP PM</span><span class="chip">Power BI</span><span class="chip">OGMP 2.0</span></div>
+        </div>
+        <div>
+          <div class="block">
+            <div class="label">Arquitetura da solução</div>
+            <div class="pipe">
+              <div class="step"><b>01</b>SAP PM: ordens e notas de manutenção</div><span class="arrow">→</span>
+              <div class="step"><b>02</b>Tratamento e modelagem dos dados</div><span class="arrow">→</span>
+              <div class="step"><b>03</b>Cálculo de emissões (CH₄ → tCO₂e)</div><span class="arrow">→</span>
+              <div class="step"><b>04</b>Base certificada (Ética + SSMA)</div><span class="arrow">→</span>
+              <div class="step"><b>05</b>Reporte OGMP 2.0</div>
+            </div>
+          </div>
+          <div class="block">
+            <div class="label">Decisões técnicas</div>
+            <ul class="decisions">
+              <li>Dados de manutenção do SAP PM como fonte para a quantificação de metano.</li>
+              <li>Base única e auditável no lugar de controles manuais dispersos.</li>
+              <li>Rastreabilidade de ponta a ponta para validação interna e reporte internacional.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="label">Resultado</div>
+            <div class="metrics">
+              <div class="metric"><strong>Base certificada</strong><span>validada por Ética e SSMA</span></div>
+              <div class="metric"><strong>OGMP 2.0</strong><span>usada em reporte oficial</span></div>
+              <div class="metric"><strong>Rio Pipeline 2027</strong><span>coautoria do trabalho técnico</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- OCORRÊNCIAS M&Q -->
+      <article class="case">
+        <div>
+          <div class="eyebrow">Manutenção industrial · SAP PM · NTS</div>
+          <h3>Monitoramento de ocorrências em equipamentos de Medição &amp; Qualidade</h3>
+          <p class="summary">Lê as transações IW29 (notas) e IW39 (ordens) do SAP PM para os equipamentos de Medição &amp; Qualidade e calcula WIP, SLA médio, top ofensores e um radar de aging para desvios críticos. Um fluxo RPA alerta a coordenação duas vezes por dia sobre novas notas e ordens.</p>
+          <div class="chips"><span class="chip">SAP PM</span><span class="chip">IW29 / IW39</span><span class="chip">Power Automate</span><span class="chip">Power BI</span></div>
+        </div>
+        <div>
+          <div class="block">
+            <div class="label">Arquitetura da solução</div>
+            <div class="pipe">
+              <div class="step"><b>01</b>SAP PM: IW29 (notas) e IW39 (ordens)</div><span class="arrow">→</span>
+              <div class="step"><b>02</b>Indicadores: WIP, SLA médio, top ofensores</div><span class="arrow">→</span>
+              <div class="step"><b>03</b>Radar de aging de desvios críticos</div><span class="arrow">→</span>
+              <div class="step"><b>04</b>Fluxo RPA: alerta à coordenação 2x/dia</div>
+            </div>
+          </div>
+          <div class="block">
+            <div class="label">Decisões técnicas</div>
+            <ul class="decisions">
+              <li>Indicadores de manutenção (WIP, SLA e aging) em vez de contagem simples de ocorrências.</li>
+              <li>Alerta ativo por RPA: a coordenação recebe as novas notas e ordens sem precisar consultar o painel.</li>
+              <li>Foco nos desvios críticos dos equipamentos de medição.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="label">Resultado</div>
+            <div class="metrics">
+              <div class="metric"><strong>2x/dia</strong><span>alertas automáticos à coordenação</span></div>
+              <div class="metric"><strong>Aging</strong><span>desvios críticos priorizados</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- MONITOR DE SEEs -->
+      <article class="case">
+        <div>
+          <div class="eyebrow">Automação corporativa · NTS</div>
+          <h3>Monitor de SEEs pendentes — SAP S/4HANA → SharePoint → Power Automate</h3>
+          <p class="summary">Pipeline determinístico (sem IA): um job do SAP S/4HANA exporta diariamente a tabela customizada ZFIR0005 em .csv para o SharePoint; o Power Automate aplica a regra de aging (mais de 60 dias em aberto) e notifica os responsáveis de cada SEE para regularizar a pendência. O mesmo arquivo alimenta o acompanhamento no Power BI.</p>
+          <div class="chips"><span class="chip">SAP S/4HANA</span><span class="chip">Tabela Z (ZFIR0005)</span><span class="chip">SharePoint</span><span class="chip">Power Automate</span><span class="chip">Power BI</span></div>
+        </div>
+        <div>
+          <div class="block">
+            <div class="label">Arquitetura da solução</div>
+            <div class="pipe">
+              <div class="step"><b>01</b>Job SAP: export ZFIR0005 (.csv)</div><span class="arrow">→</span>
+              <div class="step"><b>02</b>Arquivo no SharePoint</div><span class="arrow">→</span>
+              <div class="step"><b>03</b>Power Automate: aging &gt; 60 dias</div><span class="arrow">→</span>
+              <div class="step"><b>04</b>Notificação aos responsáveis</div><span class="arrow">→</span>
+              <div class="step"><b>05</b>Power BI: acompanhamento</div>
+            </div>
+          </div>
+          <div class="block">
+            <div class="label">Decisões técnicas</div>
+            <ul class="decisions">
+              <li>Regras determinísticas em vez de IA: saída auditável e previsível.</li>
+              <li>Job agendado no SAP + SharePoint como camada de integração, sem o fluxo acessar o ERP diretamente.</li>
+              <li>Execução diária, com notificação direcionada ao responsável de cada SEE.</li>
+            </ul>
+          </div>
+          <div class="block">
+            <div class="label">Resultado</div>
+            <div class="metrics">
+              <div class="metric"><strong>R$ 250 mil</strong><span>+ juros em economia</span></div>
+              <div class="metric"><strong>1x/dia</strong><span>execução automática</span></div>
+              <div class="metric"><strong>0 IA</strong><span>regras 100% auditáveis</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 
-  <section id="sobre">
-    <div class="wrap section-head">
-      <p class="eyebrow" style="color:#8e5566;"><span class="lang-pt">Sobre</span><span class="lang-en">About</span></p>
-      <div>
-        <h2 class="section-title"><span class="lang-pt">Tecnologia aplicada a desafios reais de negócio.</span><span class="lang-en">Technology applied to real business challenges.</span></h2>
-        <p class="about-copy"><span class="lang-pt">Profissional de tecnologia com foco em soluções orientadas por dados, automação e melhoria contínua. Une pensamento analítico, organização e visão de negócio para simplificar processos, tornar informações mais acessíveis e apoiar decisões com clareza.</span><span class="lang-en">Technology professional focused on data-driven solutions, automation and continuous improvement. Combines analytical thinking, organization and business vision to simplify processes, make information more accessible and support decisions with clarity.</span></p>
-        <div class="points">
-          <div class="point">
-            <h4><span class="lang-pt">Visão analítica</span><span class="lang-en">Analytical thinking</span></h4>
-            <p><span class="lang-pt">Decisões sustentadas por dados claros, confiáveis e bem estruturados.</span><span class="lang-en">Decisions supported by clear, reliable and well-structured data.</span></p>
-          </div>
-          <div class="point">
-            <h4><span class="lang-pt">Pensamento sistêmico</span><span class="lang-en">Systems thinking</span></h4>
-            <p><span class="lang-pt">Soluções conectadas a pessoas, processos, tecnologia e resultados.</span><span class="lang-en">Solutions connected to people, processes, technology and results.</span></p>
-          </div>
-          <div class="point">
-            <h4><span class="lang-pt">Execução pragmática</span><span class="lang-en">Pragmatic execution</span></h4>
-            <p><span class="lang-pt">Tecnologia aplicada com objetividade, eficiência e foco em valor.</span><span class="lang-en">Technology applied with objectivity, efficiency and a focus on value.</span></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- ===================== MAIS PROJETOS ===================== -->
   <section id="projetos">
     <div class="wrap">
-      <div class="projects-head">
-        <div>
-          <p class="eyebrow" style="color:#8e5566;"><span class="lang-pt">Projetos</span><span class="lang-en">Projects</span></p>
-          <h2 class="section-title" style="margin-top:12px;"><span class="lang-pt">Projetos selecionados.</span><span class="lang-en">Selected projects.</span></h2>
-        </div>
-        <p><span class="lang-pt">Cases de dados, indicadores, automação, machine learning e produtos web, com impacto direto na operação e no dia a dia.</span><span class="lang-en">Data, reporting, automation, machine learning and web product cases, with direct impact on operations and everyday life.</span></p>
+      <div class="sec-head">
+        <div class="eyebrow">02 · Mais projetos</div>
+        <h2>Software, automação e integração de dados</h2>
       </div>
-
-      <div class="grid-projects">
-        <a class="project-card" href="#contato">
-          <div class="project-art" style="background:#57162b;"><span>01 / CASE</span></div>
-          <div class="project-body">
-            <p class="project-cat">DATA &amp; GOVERNANCE</p>
-            <h3><span class="lang-pt">Controle de Volumes e Emissões</span><span class="lang-en">Volume &amp; Emissions Control</span></h3>
-            <p><span class="lang-pt">Solução de Business Intelligence (BI) ponta a ponta para rastreamento, controle e auditoria de volumes operacionais e emissões de gases (tCO2e), eliminando controles manuais e criando uma base certificada para relatórios oficiais à ONU, validada pelos Comitês de Ética e SSMA (Segurança, Saúde e Meio Ambiente).</span><span class="lang-en">End-to-end Business Intelligence (BI) solution for tracking, controlling and auditing operational volumes and gas emissions (tCO2e), eliminating manual controls and building a certified data source for official UN reports, validated by the Ethics and SSMA (Health, Safety & Environment) Committees.</span></p>
-            <span class="project-link"><span class="lang-pt">Ver case</span><span class="lang-en">View case</span> ↗</span>
-          </div>
-        </a>
-        <a class="project-card" href="#contato">
-          <div class="project-art" style="background:#7c3248;"><span>02 / CASE</span></div>
-          <div class="project-body">
-            <p class="project-cat">BUSINESS INTELLIGENCE</p>
-            <h3><span class="lang-pt">Gestão Visual de Indicadores</span><span class="lang-en">Visual KPI Management</span></h3>
-            <p><span class="lang-pt">Painel de indicadores em Power BI que reúne, em uma única visão, a performance dos chamados de TI no ServiceNow, os controles de deslocamento vindos do SAP e as metas alimentadas manualmente, apoiando decisões mais rápidas e consistentes para os times de negócio em toda a operação.</span><span class="lang-en">Power BI dashboard that brings together, in a single view, IT ticket performance from ServiceNow, travel and displacement controls from SAP and manually-fed targets, supporting faster and more consistent decisions for business teams across the operation.</span></p>
-            <span class="project-link"><span class="lang-pt">Ver case</span><span class="lang-en">View case</span> ↗</span>
-          </div>
-        </a>
-        <a class="project-card" href="#contato">
-          <div class="project-art" style="background:#8f485b;"><span>03 / CASE</span></div>
-          <div class="project-body">
-            <p class="project-cat">AUTOMATION</p>
-            <h3><span class="lang-pt">Medição de Notas Fiscais</span><span class="lang-en">Invoice Measurement</span></h3>
-            <p><span class="lang-pt">Automação ponta a ponta que cruza dados de SAP, ServiceNow e da planilha do DPC para identificar recebimentos (MIGO) pendentes, atualiza um Power BI via SharePoint e notifica os responsáveis pelo Microsoft Teams, com auditoria por e-mail ao final de cada ciclo do fluxo.</span><span class="lang-en">End-to-end automation that cross-references SAP, ServiceNow and the DPC spreadsheet to flag pending goods receipts (MIGO), refreshes a Power BI dashboard via SharePoint and notifies the responsible people on Microsoft Teams, with an email audit report at the end of each flow cycle.</span></p>
-            <span class="project-link"><span class="lang-pt">Ver case</span><span class="lang-en">View case</span> ↗</span>
-          </div>
-        </a>
-        <a class="project-card" href="#contato">
-          <div class="project-art" style="background:#42101f;"><span>04 / CASE</span></div>
-          <div class="project-body">
-            <p class="project-cat">MAINTENANCE ANALYTICS</p>
-            <h3><span class="lang-pt">Ocorrências nos Equipamentos de M&amp;Q</span><span class="lang-en">Machinery &amp; Equipment Incident Tracking</span></h3>
-            <p><span class="lang-pt">Dashboard de BI que consome direto as transações do SAP PM (IW29 e IW39) para Equipamentos de Medição e Qualidade, com visão executiva de WIP, SLA médio e Top Ofensores, radar de aging para desvios críticos e um fluxo de RPA que avisa a coordenação, duas vezes ao dia, sobre novas notas e ordens.</span><span class="lang-en">BI dashboard reading directly from SAP PM transactions (IW29 and IW39) for Measurement & Quality Equipment, with an executive view of WIP, average SLA and Top Offenders, an aging radar for critical deviations, and an RPA flow that alerts coordination twice a day about new notes and orders.</span></p>
-            <span class="project-link"><span class="lang-pt">Ver case</span><span class="lang-en">View case</span> ↗</span>
-          </div>
-        </a>
-        <a class="project-card project-wide" href="https://salvia.onrender.com" target="_blank" rel="noopener">
-          <div class="project-art" style="background:#2f0b17;"><span>05 / TCC · MACHINE LEARNING</span></div>
-          <div class="project-body">
-            <p class="project-cat">HEALTHTECH &amp; ML</p>
-            <h3><span class="lang-pt">Sálvia: triagem em saúde mental com Machine Learning</span><span class="lang-en">Sálvia: mental health screening with Machine Learning</span></h3>
-            <p><span class="lang-pt">Trabalho de conclusão de curso em Engenharia de Computação. Sistema web de apoio à decisão clínica: o paciente responde à triagem transversal do DSM-5 e um modelo multirrótulo (scikit-learn) recomenda os questionários de aprofundamento, com a explicação de cada recomendação e auditoria de viés por grupo. O profissional (psiquiatra, psicólogo, neuropsicólogo ou neurologista) revisa e assina antes de qualquer devolutiva chegar ao paciente, com laudo em PDF validável por código de autenticidade, discussão da equipe multidisciplinar e documentos digitalizados. FastAPI, SQLAlchemy, React e TypeScript, publicado com Docker.</span><span class="lang-en">Computer Engineering capstone project. A clinical decision support web system: the patient answers the DSM-5 cross-cutting screening and a multi-label model (scikit-learn) recommends follow-up questionnaires, explaining each recommendation and auditing bias across groups. The clinician (psychiatrist, psychologist, neuropsychologist or neurologist) reviews and signs before any feedback reaches the patient, with a PDF report verifiable by an authenticity code, multidisciplinary team discussion and scanned documents. FastAPI, SQLAlchemy, React and TypeScript, deployed with Docker.</span></p>
-            <p style="flex:0;font-size:.88rem;"><span class="lang-pt">Acesso de demonstração: <strong>psiquiatra@demo.com.br</strong> (profissional) ou <strong>maria@demo.com.br</strong> (paciente), senhas <strong>demo-profissional-123</strong> e <strong>demo-paciente-123</strong>.</span><span class="lang-en">Demo login: <strong>psiquiatra@demo.com.br</strong> (clinician) or <strong>maria@demo.com.br</strong> (patient), passwords <strong>demo-profissional-123</strong> and <strong>demo-paciente-123</strong>.</span></p>
-            <span class="project-link"><span class="lang-pt">Abrir demonstração (pode levar 1 min para acordar)</span><span class="lang-en">Open live demo (may take a minute to wake up)</span> ↗</span>
-          </div>
-        </a>
-        <a class="project-card project-wide" href="https://fluxo-previsto.netlify.app" target="_blank" rel="noopener">
-          <div class="project-art" style="background:#5e1a2e;"><span>06 / WEB APP · FINTECH</span></div>
-          <div class="project-body">
-            <p class="project-cat">FULL-STACK &amp; PWA</p>
-            <h3><span class="lang-pt">Fluxo Previsto: quanto vai sobrar no fim do mês</span><span class="lang-en">Fluxo Previsto: how much will be left at the end of the month</span></h3>
-            <p><span class="lang-pt">Eu tinha uma planilha de controle financeiro e preguiça de preencher, então fiz um app pra mim. Ele importa extrato e fatura (CSV, OFX e PDF lido por IA), projeta o saldo de cada dia com 5º dia útil e feriados móveis calculados pela Páscoa, e simula se um gasto cabe no mês antes de acontecer. Supabase com autenticação, Postgres com Row Level Security e tempo real; Open Finance (Pluggy) e leitura de PDF (Gemini) em Edge Functions, sem chaves no navegador; PWA instalável e offline, com documentação de arquitetura, dados, segurança e LGPD. Desenvolvido com apoio de IA (Claude).</span><span class="lang-en">I had a personal finance spreadsheet and no patience to fill it in, so I built an app for myself. It imports bank statements and card bills (CSV, OFX and AI-read PDF), projects the balance for every day using business-day rules and Easter-based movable holidays, and simulates whether a purchase fits the month before it happens. Supabase with authentication, Postgres Row Level Security and realtime sync; Open Finance (Pluggy) and PDF reading (Gemini) in Edge Functions with no keys in the browser; installable offline PWA, with documentation for architecture, data model, security and LGPD. Built with AI assistance (Claude).</span></p>
-            <p style="flex:0;font-size:.88rem;"><span class="lang-pt">Teste sem conta em <strong>"Testar sem conta"</strong>. Código e documentação: <strong>github.com/Jullross/fluxo-previsto</strong></span><span class="lang-en">Try it without an account via <strong>"Testar sem conta"</strong>. Code and docs: <strong>github.com/Jullross/fluxo-previsto</strong></span></p>
-            <span class="project-link"><span class="lang-pt">Abrir o app</span><span class="lang-en">Open the app</span> ↗</span>
-          </div>
-        </a>
+      <div class="grid">
+        <article class="card">
+          <div class="eyebrow">Software + ML · TCC</div>
+          <h3>Sálvia — triagem de saúde mental com Machine Learning</h3>
+          <p>Sistema web de apoio à decisão clínica: a partir da triagem transversal do DSM-5, um modelo multirrótulo recomenda questionários de aprofundamento, explica cada recomendação e audita viés entre grupos. Nenhum retorno chega ao paciente sem revisão e assinatura do clínico; o laudo sai em PDF com código de autenticidade.</p>
+          <div class="chips"><span class="chip">scikit-learn</span><span class="chip">FastAPI</span><span class="chip">SQLAlchemy</span><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Docker</span></div>
+          <div class="links-row"><a href="https://salvia.onrender.com" target="_blank" rel="noopener">demo ↗</a></div>
+        </article>
+        <article class="card">
+          <div class="eyebrow">Automação · NTS</div>
+          <h3>Medição de Notas Fiscais</h3>
+          <p>Automação ponta a ponta que cruza SAP, ServiceNow e a planilha DPC para detectar entradas de mercadoria (MIGO) pendentes; atualiza o Power BI, notifica os responsáveis no Teams e envia uma auditoria por e-mail ao fim de cada ciclo.</p>
+          <div class="chips"><span class="chip">SAP</span><span class="chip">ServiceNow</span><span class="chip">Power Automate</span><span class="chip">SharePoint</span><span class="chip">Teams</span></div>
+        </article>
+        <article class="card">
+          <div class="eyebrow">Integração de dados · NTS</div>
+          <h3>Gestão visual de indicadores</h3>
+          <p>Modelo único que integra chamados do ServiceNow, controle de deslocamentos do SAP e metas lançadas manualmente em um painel de KPIs.</p>
+          <div class="chips"><span class="chip">ServiceNow</span><span class="chip">SAP</span><span class="chip">Power BI</span></div>
+        </article>
+        <article class="card">
+          <div class="eyebrow">Software · PWA</div>
+          <h3>Fluxo Previsto — finanças pessoais</h3>
+          <p>PWA instalável e offline que importa extratos (CSV, OFX e PDF lido por IA), projeta o saldo diário com regras de dias úteis e feriados móveis e simula compras antes de acontecerem. Desenvolvido com apoio de IA (Claude).</p>
+          <div class="chips"><span class="chip">Supabase (Postgres + RLS)</span><span class="chip">Edge Functions</span><span class="chip">Open Finance</span><span class="chip">PWA</span></div>
+          <div class="links-row"><a href="https://fluxo-previsto.netlify.app" target="_blank" rel="noopener">app ↗</a><a href="https://github.com/Jullross/fluxo-previsto" target="_blank" rel="noopener">código ↗</a></div>
+        </article>
       </div>
     </div>
   </section>
 
+  <!-- ===================== HABILIDADES ===================== -->
   <section id="habilidades">
-    <div class="wrap skills-grid">
-      <div>
-        <p class="eyebrow" style="color:#8e5566;"><span class="lang-pt">Habilidades</span><span class="lang-en">Skills</span></p>
-        <h2 class="section-title" style="margin-top:12px;"><span class="lang-pt">Base técnica, visão de produto.</span><span class="lang-en">Technical foundation, product vision.</span></h2>
-        <p class="skills-desc"><span class="lang-pt">Competências adaptáveis a contextos corporativos, produtos digitais e operações orientadas por informação.</span><span class="lang-en">Skills adaptable to corporate contexts, digital products and information-driven operations.</span></p>
-      </div>
-      <div class="skills-cols">
-        <div>
-          <div class="skill-item">
-            <h4><span class="lang-pt">Engenharia de Dados</span><span class="lang-en">Data Engineering</span></h4>
-            <p><span class="lang-pt">Pipelines, modelagem, qualidade e integração de dados.</span><span class="lang-en">Pipelines, modeling, quality and data integration.</span></p>
-          </div>
-          <div class="skill-item">
-            <h4><span class="lang-pt">Business Intelligence</span><span class="lang-en">Business Intelligence</span></h4>
-            <p><span class="lang-pt">Dashboards, métricas, indicadores e storytelling analítico.</span><span class="lang-en">Dashboards, metrics, KPIs and analytical storytelling.</span></p>
-          </div>
-          <div class="skill-item">
-            <h4><span class="lang-pt">Automação de Processos</span><span class="lang-en">Process Automation</span></h4>
-            <p><span class="lang-pt">Fluxos eficientes para reduzir trabalho manual e erros.</span><span class="lang-en">Efficient workflows that reduce manual work and errors.</span></p>
-          </div>
-        </div>
-        <div>
-          <div class="skill-item">
-            <h4>Python &amp; SQL</h4>
-            <p><span class="lang-pt">Análise, processamento e manipulação de dados.</span><span class="lang-en">Analysis, processing and data manipulation.</span></p>
-          </div>
-          <div class="skill-item">
-            <h4><span class="lang-pt">Cloud &amp; Integrações</span><span class="lang-en">Cloud &amp; Integrations</span></h4>
-            <p><span class="lang-pt">Serviços em nuvem, APIs e ambientes escaláveis.</span><span class="lang-en">Cloud services, APIs and scalable environments.</span></p>
-          </div>
-          <div class="skill-item">
-            <h4><span class="lang-pt">Melhoria Contínua</span><span class="lang-en">Continuous Improvement</span></h4>
-            <p><span class="lang-pt">Diagnóstico, documentação e evolução de soluções.</span><span class="lang-en">Diagnostics, documentation and solution evolution.</span></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="curriculo">
     <div class="wrap">
-      <div class="resume-card">
-        <div>
-          <p class="eyebrow" style="color:#8e5566;"><span class="lang-pt">Currículo</span><span class="lang-en">Resume</span></p>
-          <h2><span class="lang-pt">Meu currículo, em um só lugar.</span><span class="lang-en">My resume, all in one place.</span></h2>
-          <p><span class="lang-pt">Consulte minha trajetória, experiências e competências profissionais.</span><span class="lang-en">Explore my professional journey, experience and skills.</span></p>
+      <div class="sec-head">
+        <div class="eyebrow">03 · Habilidades</div>
+        <h2>Três blocos técnicos</h2>
+      </div>
+      <div class="skills">
+        <div class="skill">
+          <h3>Engenharia de Software</h3>
+          <p>Linguagens, backend, ML e ferramentas</p>
+          <div class="group"><div class="eyebrow">Linguagens</div><div class="chips"><span class="chip">Python</span><span class="chip">C/C++</span><span class="chip">Scilab</span><span class="chip">SQL</span><span class="chip">TypeScript</span></div></div>
+          <div class="group"><div class="eyebrow">Backend &amp; APIs</div><div class="chips"><span class="chip">FastAPI</span><span class="chip">SQLAlchemy</span><span class="chip">APIs REST</span><span class="chip">Postman</span></div></div>
+          <div class="group"><div class="eyebrow">Frontend &amp; ML</div><div class="chips"><span class="chip">React</span><span class="chip">scikit-learn</span></div></div>
+          <div class="group"><div class="eyebrow">Ferramentas</div><div class="chips"><span class="chip">Git / GitHub</span><span class="chip">Docker</span><span class="chip">Supabase / Postgres</span></div></div>
         </div>
-        <a class="resume-cta" href="https://drive.google.com/file/d/1sz4MK0e5iCKS_2b4eOQu6QSLBcS3tQgy/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-          <span class="lang-pt">Ver currículo</span><span class="lang-en">View resume</span> ↗
-        </a>
+        <div class="skill">
+          <h3>Sistemas de Potência &amp; Embarcados</h3>
+          <p>Computação científica e sistemas elétricos</p>
+          <div class="group"><div class="eyebrow">Computação científica</div><div class="chips"><span class="chip">Métodos numéricos</span><span class="chip">Newton-Raphson</span><span class="chip">Matriz Jacobiana</span><span class="chip">Álgebra matricial</span></div></div>
+          <div class="group"><div class="eyebrow">Sistemas de potência</div><div class="chips"><span class="chip">Fluxo de carga (NR / DC)</span><span class="chip">Matriz Ybus</span><span class="chip">ANAREDE</span><span class="chip">CEPEL / IEEE CDF</span></div></div>
+          <div class="group"><div class="eyebrow">Embarcados</div><div class="chips"><span class="chip">C/C++</span><span class="chip">Arduino</span></div></div>
+        </div>
+        <div class="skill">
+          <h3>Automação &amp; Integração Industrial</h3>
+          <p>RPA, ERP, ITSM e Microsoft 365</p>
+          <div class="group"><div class="eyebrow">RPA / Workflow</div><div class="chips"><span class="chip">Power Automate</span><span class="chip">Copilot Studio</span></div></div>
+          <div class="group"><div class="eyebrow">ERP</div><div class="chips"><span class="chip">SAP S/4HANA</span><span class="chip">SAP PM (IW29 / IW39)</span><span class="chip">Jobs de exportação</span><span class="chip">Tabelas Z</span></div></div>
+          <div class="group"><div class="eyebrow">ITSM &amp; Microsoft 365</div><div class="chips"><span class="chip">ServiceNow</span><span class="chip">SharePoint</span><span class="chip">Teams</span></div></div>
+          <div class="group"><div class="eyebrow">Monitoramento</div><div class="chips"><span class="chip">Power BI</span></div></div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ===================== TRAJETÓRIA ===================== -->
+  <section id="trajetoria">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">04 · Trajetória</div>
+        <h2>Formação e experiência</h2>
+      </div>
+      <div class="timeline">
+        <div class="row"><div class="when">out/2024 — atual</div><div><strong>Estagiária de TI · NTS — Nova Transportadora do Sudeste</strong><p>SAP S/4HANA, SAP PM, Power Automate, Copilot Studio, Power BI</p></div></div>
+        <div class="row"><div class="when">prev. dez/2028</div><div><strong>Bacharelado em Engenharia de Computação · UniCarioca</strong><p>TCC: Sálvia (triagem com Machine Learning)</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTATO ===================== -->
   <section id="contato">
     <div class="wrap">
-      <div class="contact-top">
-        <div class="contact-heading">
-          <p class="eyebrow"><span class="lang-pt">Contato</span><span class="lang-en">Contact</span></p>
-          <h2 class="contact-title"><span class="lang-pt">Vamos conversar sobre o próximo desafio.</span><span class="lang-en">Let's talk about the next challenge.</span></h2>
-        </div>
-        <div class="contact-panel">
-          <h5><span class="lang-pt">Canais de contato</span><span class="lang-en">Contact channels</span></h5>
-          <div class="contact-links">
-            <a href="mailto:Julliapatrociniorossi@gmail.com">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
-              Julliapatrociniorossi@gmail.com
-            </a>
-            <a href="https://api.whatsapp.com/send?phone=5521996471384&text=Ol%C3%A1%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener noreferrer">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              21 99647-1384
-            </a>
-            <a href="https://linkedin.com/in/jullia-patrocinio/?skipRedirect=true" target="_blank" rel="noopener noreferrer">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-              linkedin.com/in/jullia-patrocinio
-            </a>
-          </div>
-          <p class="loc"><span class="lang-pt">Rio de Janeiro, Brasil · Disponível para oportunidades e colaborações.</span><span class="lang-en">Rio de Janeiro, Brazil · Available for opportunities and collaborations.</span></p>
-        </div>
+      <div class="sec-head">
+        <div class="eyebrow">05 · Contato</div>
+        <h2>Vamos conversar</h2>
+      </div>
+      <div class="contact">
+        <a class="btn ghost" href="https://www.linkedin.com/in/jullia-patrocinio" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn ghost" href="https://github.com/Jullross" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn ghost" href="mailto:julliapatrociniorossi@gmail.com">E-mail</a>
+        <a class="btn primary" href="curriculo.html">Currículo</a>
       </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="wrap footer-inner">
-    <p>© 2026 · JULLIA PATROCÍNIO</p>
-    <p><span class="lang-pt">Tecnologia, Dados &amp; Automação</span><span class="lang-en">Technology, Data &amp; Automation</span></p>
-  </div>
+  <div class="wrap">// jullia patrocinio · 2026</div>
 </footer>
-
-<script>
-  document.getElementById('lang-toggle').addEventListener('click', function(){
-    var en = document.body.classList.toggle('is-en');
-    document.documentElement.lang = en ? 'en' : 'pt-BR';
-    document.title = en
-      ? "Jullia Patrocínio · Technology, Data & Automation"
-      : "Jullia Patrocínio · Tecnologia, Dados & Automação";
-    this.setAttribute('aria-pressed', String(en));
-  });
-
-  // rolagem suave até cada seção (menu, marca e botão "Entrar em contato")
-  document.querySelectorAll('a[data-target], a[href^="#"]').forEach(function(link){
-    link.addEventListener('click', function(e){
-      var selector = this.getAttribute('data-target') || this.getAttribute('href');
-      var target = document.querySelector(selector);
-      if(!target) return;
-      e.preventDefault();
-      target.scrollIntoView({behavior: 'smooth', block: 'start'});
-    });
-  });
-</script>
 
 </body>
 </html>
